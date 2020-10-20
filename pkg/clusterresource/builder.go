@@ -345,6 +345,22 @@ func (o *Builder) generateInstallConfigSecret() (*corev1.Secret, error) {
 				Replicas: &o.WorkerNodesCount,
 			},
 		},
+		ImageContentSources: []installertypes.ImageContentSource{
+			{
+				Source: "quay.io/openshift-release-dev/ocp-release",
+				Mirrors: []string{
+					"quay.io/openshift-release-dev/ocp-release",
+					"950916221866.dkr.ecr.us-east-1.amazonaws.com/ocp-release",
+				},
+			},
+			{
+				Source: "quay.io/openshift-release-dev/ocp-v4.0-art-dev",
+				Mirrors: []string{
+					"quay.io/openshift-release-dev/ocp-v4.0-art-dev",
+					"950916221866.dkr.ecr.us-east-1.amazonaws.com/ocp-release",
+				},
+			},
+		},
 		AdditionalTrustBundle: o.AdditionalTrustBundle,
 	}
 
